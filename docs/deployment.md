@@ -12,7 +12,7 @@ Before you begin, ensure you have the following:
 
 ### Step-by-Step Guide
 ### Step 1 : Sign and Open RDS
-- Go to templates folder and download rds.yml in your local
+- Download this [file](https://github.com/Climate-Emergency-Software-Alliance/cognicity-docs/blob/main/templates/rds.yml) in your local 
 - Sign in to AWS console and open [Cloud  Formation](https://ap-southeast-1.console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks?filteringText=&filteringStatus=active&viewNested=true) 
 - Click on create stack -> Choose existing template -> Upload template file
 - Follow the steps mentioned and add parameters accordingly
