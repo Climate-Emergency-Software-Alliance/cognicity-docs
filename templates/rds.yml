@@ -1,0 +1,83 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation Template for creating an Amazon RDS Postgres instance
+
+Parameters:
+  DBInstanceIdentifier:
+    Description: Database instance identifier
+    Type: String
+    Default: Cognicity-RDS-Instance
+  DBName:
+    Description: Initial database name
+    Type: String
+    Default: mydatabase
+  DBUser:
+    Description: The database admin account username
+    Type: String
+    Default: postgres
+  DBPassword:
+    Description: The database admin account password
+    Type: String
+    NoEcho: true
+  DBAllocatedStorage:
+    Description: The size of the database (GB)
+    Type: Number
+    Default: '100'
+  DBInstanceClass:
+    Description: Database instance class
+    Type: String
+    Default: db.t3.small
+    AllowedValues:
+      - db.t3.micro
+      - db.t3.small
+      - db.t3.medium
+      - db.t3.large
+      - db.t3.xlarge
+      - db.t3.2xlarge
+  VPCId:
+    Description: VPC Id
+    Type: AWS::EC2::VPC::Id
+  SubnetIds:
+    Description: Subnet Ids for the RDS instance
+    Type: List<AWS::EC2::Subnet::Id>
+  SecurityGroupsIds:
+    Description: VPC Security GroupIds
+    Type: List<AWS::EC2::SecurityGroup::Id>
+
+Resources:
+  RDSSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable access to RDS instance
+      VpcId: !Ref VPCId
+
+  RDSSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Subnet group for RDS instance
+      SubnetIds: !Ref SubnetIds
+
+  RDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: !Ref DBInstanceIdentifier
+      AllocatedStorage: !Ref DBAllocatedStorage
+      DBInstanceClass: !Ref DBInstanceClass
+      Engine: Postgres
+      EngineVersion: '11.22'
+      MasterUsername: !Ref DBUser
+      MasterUserPassword: !Ref DBPassword
+      DBName: !Ref DBName
+      VPCSecurityGroups: !Ref SecurityGroupsIds
+      DBSubnetGroupName: !Ref RDSSubnetGroup
+      PubliclyAccessible: false
+      BackupRetentionPeriod: 7
+      MultiAZ: false
+      StorageType: gp2
+
+Outputs:
+  DBInstanceEndpoint:
+    Description: The connection endpoint for the RDS instance
+    Value: !GetAtt RDSInstance.Endpoint.Address
+  DBInstancePort:
+    Description: The database port
+    Value: !GetAtt RDSInstance.Endpoint.Port
