@@ -1,0 +1,84 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template to create a CloudFront distribution with a custom SSL certificate and legacy cache settings
+
+Parameters:
+  CertificateArn:
+    Type: String
+    Description: ARN of the custom SSL certificate
+
+  BucketName:
+    Type: String
+    Description: Name of the S3 bucket
+
+Resources:
+  LegacyCachePolicy:
+    Type: AWS::CloudFront::CachePolicy
+    Properties:
+      CachePolicyConfig:
+        DefaultTTL: 3600
+        MaxTTL: 86400
+        MinTTL: 3600
+        Name: LegacyCachePolicy
+        ParametersInCacheKeyAndForwardedToOrigin:
+          EnableAcceptEncodingGzip: true
+          CookiesConfig:
+            CookieBehavior: none
+          HeadersConfig:
+            HeaderBehavior: none
+          QueryStringsConfig:
+            QueryStringBehavior: none
+
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+
+  CloudFrontOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: Access identity for CloudFront to access S3 bucket
+
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        ViewerCertificate:
+          AcmCertificateArn: !Ref CertificateArn
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
+        Origins:
+          - Id: MyS3BucketOrigin
+            DomainName: !Sub "${BucketName}.s3.amazonaws.com"
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}"
+        DefaultCacheBehavior:
+          TargetOriginId: MyS3BucketOrigin
+          ViewerProtocolPolicy: redirect-to-https
+          CachePolicyId: !Ref LegacyCachePolicy
+          ForwardedValues:
+            QueryString: false
+        Enabled: true
+
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Statement:
+          - Sid: "Allow CloudFront access to S3 bucket"
+            Effect: "Allow"
+            Principal:
+              AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
+            Action:
+              - "s3:GetObject"
+            Resource: !Join ['', ['arn:aws:s3:::', !Ref BucketName, '/*']]
+
+Outputs:
+  CloudFrontDistributionId:
+    Description: "ID of the CloudFront distribution"
+    Value: !Ref CloudFrontDistribution
+
+  CloudFrontDomainName:
+    Description: "Domain name of the CloudFront distribution"
+    Value: !GetAtt CloudFrontDistribution.DomainName
