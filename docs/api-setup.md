@@ -26,11 +26,14 @@ Here is the step by step guide for deploying the API's of cognicity
     - .env is available
     - dev.env.yml is configured
     - serverless.yml is configured with appropriate values
-<br/>
+
+
 ```
 serverless deploy --stage {dev | prod} --param="service={SERVICE-TO-DEPLOY}"
 ```
+
 For Example : You want to deploy reports service to dev environment we run the following
+
 ```
 serverless deploy --stage dev --param="service=reports"
 ```
@@ -39,10 +42,12 @@ serverless deploy --stage dev --param="service=reports"
 - After it is successfully deployed run go to [API Gateway](https://ap-southeast-1.console.aws.amazon.com/apigateway/main/apis?region=ap-southeast-1). Find the service deployed
 - Add a new method to the base route
 - Methods to add for some of the widely used services
-- | Service           | Method to add                                            |
+
+| Service           | Method to add                                            |
 |---------------------|--------------------------------------------------|
 | cards   | POST           |
-| reports              | GET                                 |
+| reports              | GET      |
+
 
 - The following needs to be configured in **Integration request** while adding the method 
     - Integration request type - Lambda
