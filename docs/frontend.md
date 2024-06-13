@@ -26,4 +26,23 @@ Here is the step by step guide for deploying the Frontend repositories of cognic
 - This should be done for both ***{domain-name}*** and ***cards.{your-domain-name}***
 
 **Step 3: Setting up the CodePipeline**
-- We have to create 2 Pipeline's one for Riskmap and the other for Cards
+We have to create 2 Pipeline's one for Riskmap and the other for Cards
+- Go to [CodePipeline](https://ap-southeast-1.console.aws.amazon.com/codesuite/codepipeline/pipelines?region=ap-southeast-1&pipelines-meta=eyJmIjp7InRleHQiOiIifSwicyI6eyJwcm9wZXJ0eSI6InVwZGF0ZWQiLCJkaXJlY3Rpb24iOi0xfSwibiI6MzAsImkiOjB9) and click on Create Pipeline
+- CodePipeline has 4 steps namely :
+    1. Choose pipeline settings
+           
+| Fields           | To enter                                            |
+|---------------------|--------------------------------------------------|
+| Pipeline Name   | {YOUR-PIPELINE-NAME} , Suggested : {name-of-the-repo}-{stage}                                 |
+| Pipeline type   | Choose V1                                  |
+| Service Role    | New service role
+Leave the rest to defaults and Click Next
+    2. Add source stage
+        - Connect to github , Make sure you have the correct repository permissions before connecting.
+        - Choose the repository to deploy : Riskmap or Cards
+        - Click Next
+    3. Add build stage
+        - Select AWS CodeBuild
+        - Under project name choose Create Project
+        - 
+        
