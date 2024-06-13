@@ -15,5 +15,5 @@ Before you begin, ensure you have the following:
 
 ### Step 2 : Setup APIs
 
-### Step 3 : Frontend Deployement
+### Step 3 : Frontend Deployment
 
