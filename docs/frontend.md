@@ -29,20 +29,34 @@ Here is the step by step guide for deploying the Frontend repositories of cognic
 We have to create 2 Pipeline's one for Riskmap and the other for Cards
 - Go to [CodePipeline](https://ap-southeast-1.console.aws.amazon.com/codesuite/codepipeline/pipelines?region=ap-southeast-1&pipelines-meta=eyJmIjp7InRleHQiOiIifSwicyI6eyJwcm9wZXJ0eSI6InVwZGF0ZWQiLCJkaXJlY3Rpb24iOi0xfSwibiI6MzAsImkiOjB9) and click on Create Pipeline
 - CodePipeline has 4 steps namely :
-    1. Choose pipeline settings
+    1. Choose Create option Build custom pipeline
+    2. Pipeline Settings 
+
            
 | Fields           | To enter                                            |
 |---------------------|--------------------------------------------------|
 | Pipeline Name   | {YOUR-PIPELINE-NAME} , Suggested : {name-of-the-repo}-{stage}                                 |
-| Pipeline type   | Choose V1                                  |
+| Pipeline type   | Choose V1                                |
 | Service Role    | New service role
-Leave the rest to defaults and Click Next
-    2. Add source stage
+
+    3. Add source stage
         - Connect to github , Make sure you have the correct repository permissions before connecting.
         - Choose the repository to deploy : Riskmap or Cards
         - Click Next
-    3. Add build stage
+    4. Add build stage
         - Select AWS CodeBuild
         - Under project name choose Create Project
-        - 
-        
+| Fields           | To enter                                            |
+|---------------------|--------------------------------------------------|
+| Project name | {YOUR-PROJECT-NAME} , Suggested : {name-of-the-repo}-{stage}                                 |
+| Environment image  | Custom Image      |  
+| Compute Type | EC2    |  
+| Environment Type | Linux Container |
+| Image registry | Choose Other registry |
+| External registry URL | petabencana/baseenv | 
+| Buildspec | Choose Build spec file |
+| Expand Additional configuration | Add the appropriate environment variables as per the app you are deploying
+
+For Riskmap
+
+    5. Review and create
