@@ -1,0 +1,6 @@
+## Security Groups to be created
+
+- rds (For connecting postgres)
+- serverless ( For giving serverless access )
+- ec2-rds ( For allowing connections to rds )
+- lambda-invoke ( For allowing traffic to invoke lambda inside serverless APIs )
