@@ -6,13 +6,15 @@ This repository is responsible for giving a detailed information about how to se
 
 ## Tech Stack
 Frontend : Auerila Framework , AngularJs
+
 Backend : NodeJS
+
 Infrastructure : AWS , AWS Lambda 
 
 ## Data flow
 ![image](https://github.com/Climate-Emergency-Software-Alliance/cognicity-docs/assets/39596102/b383636c-0961-427b-baf3-197e34fa83c8)
 
-## Local Setup
+## Setup
 Cognicity follows microservice architecture and so has 3 main repositories i,e Riskmap (Client map , where all the reports are shown) , Cards (Cards for reporting disasters) , cognicity-serverless (Backend of cognicity) to be configured
 
 - [Riskmap](https://github.com/Climate-Emergency-Software-Alliance/riskmap)
