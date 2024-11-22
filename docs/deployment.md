@@ -1,4 +1,4 @@
-## Deploying a new country to petabencana
+## Deploying a new country to cognicity
 
 Petabencana uses AWS for deploying the services all the services are currently deployed in Singapore region : 
 
