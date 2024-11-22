@@ -12,10 +12,15 @@ Infrastructure : AWS , AWS Lambda
 ## Data flow
 ![image](https://github.com/Climate-Emergency-Software-Alliance/cognicity-docs/assets/39596102/b383636c-0961-427b-baf3-197e34fa83c8)
 
-## Steps Involved
-- Frontend Setup
-- Backend Setup
-- Deploying in AWS
+## Local Setup
+Cognicity follows microservice architecture and so has 3 main repositories i,e Riskmap (Client map , where all the reports are shown) , Cards (Cards for reporting disasters) , cognicity-serverless (Backend of cognicity) to be configured
+
+- [Riskmap](https://github.com/Climate-Emergency-Software-Alliance/riskmap)
+- [Cards](https://github.com/Climate-Emergency-Software-Alliance/cognicity-cards-ng)
+- [Cognicity-serverless](https://github.com/Climate-Emergency-Software-Alliance/cognicity-serverless)
+
+## Steps Involved to Deploy
+Deplyoment Steps can be found [here](https://github.com/Climate-Emergency-Software-Alliance/cognicity-docs/edit/main/docs/deployment.md)
 
 ## Current Deployments
 - [Petabencana.id](https://petabencana.id/)
