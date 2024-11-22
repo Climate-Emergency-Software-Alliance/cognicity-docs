@@ -7,7 +7,8 @@ This section gives an overview on the steps to follow for deploying a new countr
 ## Prerequisites
 Before you begin, ensure you have the following:
 1. An AWS account.
-2. IAM user with sufficient permissions to create and manage RDS instances.
+2. Decide on AWS region suitable for your country
+3. IAM user with sufficient permissions to create and manage RDS instances.
 
 
 ## Step-by-Step Guide
