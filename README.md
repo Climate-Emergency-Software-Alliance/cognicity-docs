@@ -20,7 +20,7 @@ Cognicity follows microservice architecture and so has 3 main repositories i,e R
 - [Cognicity-serverless](https://github.com/Climate-Emergency-Software-Alliance/cognicity-serverless)
 
 ## Steps Involved to Deploy
-Deplyoment Steps can be found [here](https://github.com/Climate-Emergency-Software-Alliance/cognicity-docs/edit/main/docs/deployment.md)
+Deplyoment Steps can be found [here](https://github.com/Climate-Emergency-Software-Alliance/cognicity-docs/blob/main/docs/deployment.md)
 
 ## Current Deployments
 - [Petabencana.id](https://petabencana.id/)
