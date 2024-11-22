@@ -4,8 +4,10 @@ We have to frontend repositories to deploy 1. Riskmap and 2. Cards
 
 Here is the step by step guide for deploying the Frontend repositories of cognicity.
 
-- Perquisites
+## Perquisites
     - Assuming you already have a domain and SSL certificate configured in Route53 and ACM respectively
+    - Create a [s3 bucket](https://ap-southeast-1.console.aws.amazon.com/s3/buckets?region=ap-southeast-1#) for **Riskmap** , **Cards** , following naming convention can be followed
+    - [Your-platform-name]-[environment] . For eg : petabencana.id-prod and cards.petabencana.id-prod
 
 **Step 1 : Configure CloudFront for both repositories**
 - Download this [file](https://github.com/Climate-Emergency-Software-Alliance/cognicity-docs/blob/main/templates/cloudfront.yml) in your local 
@@ -57,6 +59,23 @@ We have to create 2 Pipeline's one for Riskmap and the other for Cards
 | Buildspec | Choose Build spec file |
 | Expand Additional configuration | Add the appropriate environment variables as per the app you are deploying
 
-For Riskmap
+### For Riskmap
+
+| Name           | Value                                     |
+|---------------------|--------------------------------------------------|
+| TARGET_S3_BUCKET  | s3://{YOUR-S3-BUCKET-NAME}                      |
+| DEP   | pb or ph or pk or {your deployement code you would be using for your country} |
+| ENV    | build or build-ph or build-{your deployement code you would be using for your country} |
+| ENVIRONMENT | or prod or dev | 
+
+Note: ENV value should be the same you have configured in your package.json
+
+### For Cards
+
+| Name           | Value                                     |
+|---------------------|--------------------------------------------------|
+| TARGET_S3_BUCKET  | s3://{YOUR-S3-BUCKET-NAME}                      |
+| DEP   | pb or ph or pk or {your deployement code you would be using for your country} |
+| ENV    | build or build-ph or build-{your deployement code you would be using for your country} |
 
     5. Review and create
