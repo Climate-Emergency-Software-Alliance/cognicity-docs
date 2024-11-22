@@ -3,8 +3,12 @@
 1. RDS (For connecting postgres)
   - Go to [Security Groups](https://ap-southeast-1.console.aws.amazon.com/vpcconsole/home?region=ap-southeast-1#SecurityGroups) and 
     click on Create new Security Group
-  -  Add the following Inbound and Outbound Rules
-  - 
+  -  Add the following Inbound Rules
+| Type           | Protocol     | Port Range        | Source
+|---------------------|--------------------------------------------------|
+| Postgres   | TCP   | 5432 | Link serverless security group after creating one in the second step | 
+| Postgres   | TCP   | 5432 |
+
 - serverless ( For giving serverless access )
 - ec2-rds ( For allowing connections to rds )
 - lambda-invoke ( For allowing traffic to invoke lambda inside serverless APIs )
