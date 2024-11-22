@@ -11,9 +11,9 @@ Before you begin, ensure you have the following:
 
 
 ## Step-by-Step Guide
-### Step 1 : Setup Database
+### Step 1 : [Setup Database](https://github.com/Climate-Emergency-Software-Alliance/cognicity-docs/blob/main/docs/database.md)
 
-### Step 2 : Setup APIs
+### Step 2 : [Setup APIs](https://github.com/Climate-Emergency-Software-Alliance/cognicity-docs/blob/main/docs/api-setup.md)
 
-### Step 3 : Frontend Deployment
+### Step 3 : [Frontend Deployment](https://github.com/Climate-Emergency-Software-Alliance/cognicity-docs/blob/main/docs/frontend.md)
 
